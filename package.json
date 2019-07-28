@@ -8,10 +8,7 @@
     "build": "npx typescript",
     "test": "NODE_ENV=test jest --coverage --verbose",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "start": "npx pm2 start pm2.yaml",
-    "release": "npm version patch -f -m \"Version %s release\"",
-    "preversion": "npm test",
-    "version": "npm run build && git add -f -A dist"
+    "start": "npx pm2 start pm2.yaml"
   },
   "repository": {
     "type": "git",
