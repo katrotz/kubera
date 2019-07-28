@@ -4,10 +4,14 @@ cache:
     - node_modules
 notifications:
   email:
-    on_success: always
+    on_success: never
     on_failure: always
 node_js:
   - "10"
 branches:
   only:
     - "master"
+env:
+  - NODE_ENV="development"
+script:
+  - npm release

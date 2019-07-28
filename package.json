@@ -1,18 +1,26 @@
 {
   "name": "kubera",
   "version": "0.1.0",
-  "description": "Exhange API",
-  "main": "index.js",
+  "description": "Exchange API",
+  "main": "dist/server.js",
   "scripts": {
-    "postinstall": "npx typescript",
+    "postinstall": "npm run build",
+    "build": "npx typescript",
     "test": "NODE_ENV=test jest --coverage --verbose",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "start": "npx pm2 start pm2.yaml"
+    "start": "npx pm2 start pm2.yaml",
+    "release": "npm version patch -f -m \"Version %s release\" && npm publish",
+    "preversion": "npm test",
+    "version": "npm run build && git add -f -A dist",
+    "postversion": "git push --tags"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/katrotz/kubera.git"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "exchange"
   ],
