@@ -19,7 +19,8 @@ describe('routes', () => {
   });
 
   describe('success 3rd party API response', () => {
-    (promiseRequest as any).mockImplementation(() => '{"base": "EUR", "rates": {"USD": 1.1138}}');
+    const mockApiResponse = {"base": "EUR", "rates": {"USD": 1.1138}};
+    (promiseRequest as any).mockImplementation(() => JSON.stringify(mockApiResponse));
 
     test('a valid string query', async () => {
       const response = await request(router).get('/api/v1/rates?source=EUR&target=USD');
@@ -44,6 +45,16 @@ describe('routes', () => {
     test('a missing target currency param', async () => {
       const response = await request(router).get('/api/v1/rates?source=USD');
       expect(response.status).toEqual(400);
+    });
+
+    test('a valid response', async () => {
+      const response = await request(router).get('/api/v1/rates?source=EUR&target=USD');
+
+      expect(response.text).toEqual(JSON.stringify({
+        source: 'EUR',
+        target: 'USD',
+        rate: mockApiResponse.rates.USD
+      }));
     });
   });
 

@@ -10,6 +10,7 @@ export default [
       checkRatesParams,
       async ({ query }: Request, res: Response) => {
         const result = await getRatesByCurrency(query.source, query.target);
+
         res.status(200).send(result);
       }
     ]

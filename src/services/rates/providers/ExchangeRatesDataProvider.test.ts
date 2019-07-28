@@ -13,4 +13,11 @@ describe('ExchangeRatesDataProvider', () => {
     (request as any).mockImplementation(() => '{error:"Base \'UNKNOWN_CURRENCY\' is not supported."}');
     await expect(Provider.getLatestRatesForBaseCurrency('UNKNOWN_CURRENCY')).rejects.toThrow(SyntaxError);
   });
+
+  test('a valid response', async () => {
+    const apiResponse = {"base":"EUR","rates":{"EUR": 1}};
+    (request as any).mockImplementation(() => JSON.stringify(apiResponse));
+
+    expect(await Provider.getLatestRatesForBaseCurrency('EUR', ['EUR'])).toEqual(apiResponse);
+  });
 });
