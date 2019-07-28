@@ -14,4 +14,4 @@ branches:
 env:
   - NODE_ENV="development"
 script:
-  - npm release
+  - npm run release
