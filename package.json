@@ -4,7 +4,7 @@
   "description": "Exhange API",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npx tsc",
+    "postinstall": "npx typescript",
     "test": "NODE_ENV=test jest --coverage --verbose",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
     "start": "npx pm2 start pm2.yaml"
