@@ -1,0 +1,46 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.1.0",
+    "title": "Kubera"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/v1",
+  "schemes": ["http"],
+  "produces": ["application/json"],
+  "paths": {
+    "/rates": {
+      "get": {
+        "tags": ["Exchange Rates"],
+        "summary": "Retrieves exchange rates",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "content": {
+          "application/json": {}
+        },
+        "parameters": [
+          {
+            "name": "source",
+            "in": "query",
+            "description": "Specifies the source currency, eg. EUR",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "target",
+            "in": "query",
+            "description": "Specifies the target currency, eg. USD",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    }
+  }
+}
