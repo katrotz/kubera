@@ -15,3 +15,9 @@ env:
   - NODE_ENV="development"
 script:
   - npm run release
+deploy:
+  provider: releases
+  api_key: ${PUSH}
+  skip_cleanup: true
+  on:
+    tags: true
